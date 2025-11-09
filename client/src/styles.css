@@ -114,6 +114,45 @@ body{
   box-shadow:0 6px 20px rgba(8,145,178,0.35);
 }
 
+/* Hamburger Menu */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:8px;
+  z-index:110;
+  transition:var(--transition);
+}
+
+.hamburger span{
+  width:28px;
+  height:3px;
+  background:var(--accent);
+  border-radius:3px;
+  transition:all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin:center;
+}
+
+.hamburger span.active:nth-child(1){
+  transform:translateY(8px) rotate(45deg);
+}
+
+.hamburger span.active:nth-child(2){
+  opacity:0;
+  transform:translateX(20px);
+}
+
+.hamburger span.active:nth-child(3){
+  transform:translateY(-8px) rotate(-45deg);
+}
+
+.hamburger:hover span{
+  background:var(--accent-light);
+}
+
 /* Hero Section */
 .hero{
   padding:5rem 0 6rem;
@@ -678,6 +717,39 @@ body{
 @media (max-width:900px){
   .container{padding:0 2rem}
   .header-inner{padding:1.25rem 2rem}
+  
+  /* Show hamburger on tablets */
+  .hamburger{display:flex}
+  
+  .site-nav{
+    position:fixed;
+    top:70px;
+    right:0;
+    left:0;
+    flex-direction:column;
+    background:white;
+    padding:2rem;
+    box-shadow:var(--shadow-xl);
+    display:none;
+    width:100%;
+    gap:0.5rem;
+    border-top:1px solid rgba(14,116,144,0.1);
+  }
+  
+  .site-nav.active{display:flex}
+  
+  .site-nav a{
+    width:100%;
+    text-align:left;
+    padding:1rem 1.25rem;
+    margin:0;
+  }
+  
+  .site-nav a.cta{
+    margin:0.5rem 0 0 0;
+    text-align:center;
+  }
+  
   .hero h1{font-size:2.5rem}
   .hero p{font-size:1.125rem}
   .section h2{font-size:2.25rem}
@@ -693,33 +765,70 @@ body{
 @media (max-width:640px){
   .container{padding:0 1.5rem;width:100%}
   .header-inner{padding:1rem 1.5rem}
+  
+  /* Show hamburger on mobile */
+  .hamburger{display:flex}
+  
+  /* Mobile navigation */
+  .site-nav{
+    position:fixed;
+    top:70px;
+    right:0;
+    left:0;
+    flex-direction:column;
+    background:white;
+    padding:2rem 1.5rem;
+    box-shadow:var(--shadow-xl);
+    display:none;
+    width:100%;
+    gap:0;
+    border-top:1px solid rgba(14,116,144,0.1);
+  }
+  
+  .site-nav.active{display:flex}
+  
+  .site-nav a{
+    width:100%;
+    text-align:left;
+    padding:1rem 1.25rem;
+    border-radius:var(--radius-sm);
+    margin:0;
+    border-bottom:1px solid rgba(14,116,144,0.05);
+  }
+  
+  .site-nav a.cta{
+    margin:0.5rem 0 0 0;
+    text-align:center;
+    border-bottom:none;
+  }
+  
   .hero{padding:3rem 0 4rem; min-height:500px}
-  .hero h1{font-size:2rem}
-  .hero p{font-size:1rem}
+  .hero h1{font-size:2rem; line-height:1.2}
+  .hero p{font-size:1rem; padding:0 1rem}
   .section{padding:3rem 0}
   .section h2{font-size:1.875rem}
-  .section > p{margin-bottom:3rem}
+  .section > p{margin-bottom:3rem; padding:0 0.5rem}
   .grid{grid-template-columns:1fr;gap:1.5rem}
   .hero-ctas{flex-direction:column;align-items:center;width:100%}
   .btn{width:100%;max-width:320px;text-align:center}
-  .site-nav{
-    position:fixed;
-    top:75px;
-    right:1rem;
-    flex-direction:column;
-    background:white;
-    padding:1.5rem;
-    border-radius:var(--radius);
-    box-shadow:var(--shadow-xl);
-    display:none;
-    min-width:200px;
-  }
-  .site-nav.active{display:flex}
-  .contact{padding:2.5rem;border-radius:var(--radius);max-width:100%}
-  .card{padding:2rem}
-  .testimonial{padding:2rem}
+  .contact{padding:2.5rem 1.5rem;border-radius:var(--radius);max-width:100%;margin:0 1rem}
+  .contact-form{padding:0}
+  .card{padding:2rem 1.5rem}
+  .testimonial{padding:2rem 1.5rem}
   .stat-item h3{font-size:2.75rem}
   .stats{padding:3rem 1.5rem;margin:3rem 0}
   .stats .grid{gap:2.5rem}
-  .site-footer{padding:3rem 1.5rem 2rem;margin-top:4rem}
+  
+  /* Fix image containers on mobile */
+  .showcase-img, .about-img, .project img{
+    max-height:250px;
+    object-fit:cover;
+  }
+  
+  /* Better text spacing on mobile */
+  h2{padding:0 1rem}
+  p{padding:0 0.5rem}
+  
+  /* Footer adjustments */
+  footer, .site-footer{padding:3rem 1.5rem 2rem;margin-top:4rem}
 }
